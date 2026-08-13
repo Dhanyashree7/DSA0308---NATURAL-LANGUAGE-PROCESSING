@@ -1,9 +1,25 @@
 import nltk
 from nltk.corpus import wordnet
-nltk.download("wordnet")
-word = input("Enter a word: ")
+
+# Download WordNet
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+# Word to explore
+word = "car"
+
+# Retrieve synsets
 synsets = wordnet.synsets(word)
-for syn in synsets:
-    print("Synset:", syn.name())
-    print("Meaning:", syn.definition())
-    print()
+
+print("Word:", word)
+print("Number of synsets:", len(synsets))
+
+# Display each synset
+for synset in synsets:
+    print("\nSynset:", synset.name())
+    print("Definition:", synset.definition())
+    print("Examples:", synset.examples())
+
+    # Display synonyms
+    synonyms = synset.lemmas()
+    print("Synonyms:", [lemma.name() for lemma in synonyms])
